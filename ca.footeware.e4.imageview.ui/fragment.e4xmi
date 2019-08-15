@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_BxaXACerEeWxCPrV0pAZQQ">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_I2-5ULhbEem3lIC4Ua1GZg" featurename="children" parentElementId="ca.footeware.e4.application.perspectivestack">
+    <elements xsi:type="advanced:Perspective" xmi:id="_45lzELhbEem3lIC4Ua1GZg" elementId="ca.footeware.e4.imageview.perspective.imageview" label="Image View" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/camera.png" tooltip="Image View">
+      <children xsi:type="basic:PartStack" xmi:id="_uBQ6cLhiEem3lIC4Ua1GZg" elementId="ca.footeware.e4.imageview.partstack.0">
+        <children xsi:type="basic:Part" xmi:id="_NGbDULhdEem3lIC4Ua1GZg" elementId="ca.footeware.e4.imageview.part.imageview" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.imageview.parts.ImageView" label="Image View" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/camera.png" tooltip="Image View" closeable="true">
+          <toolbar xmi:id="_kzYA0LhdEem3lIC4Ua1GZg" elementId="ca.footeware.e4.imageview.toolbar.0">
+            <children xsi:type="menu:DirectToolItem" xmi:id="_2K4gYLh3Eem3lIC4Ua1GZg" elementId="ca.footeware.e4.imageview.directtoolitem.browse" label="Browse" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/browse-folder-16.png" tooltip="Browse to a folder with images" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.imageview.handlers.BrowseHandler"/>
+          </toolbar>
+        </children>
+      </children>
+    </elements>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_RfzXALhgEem3lIC4Ua1GZg" featurename="children" parentElementId="ca.footeware.e4.application.menu.showview">
+    <elements xsi:type="menu:DirectMenuItem" xmi:id="_JcmDoLhiEem3lIC4Ua1GZg" elementId="ca.footeware.e4.imageview.part.imageview" label="Image View" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/camera.png" tooltip="Image View" mnemonics="V" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.imageview.handlers.ShowViewHandler"/>
+  </fragments>
+</fragment:ModelFragments>

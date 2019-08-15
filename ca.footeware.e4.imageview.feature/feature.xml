@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="ca.footeware.e4.imageview.feature"
+      label="Image View Feature"
+      version="1.0.0.qualifier"
+      provider-name="Footeware.ca"
+      os="linux,win32"
+      ws="gtk,win32"
+      nl="en"
+      arch="x86_64">
+
+   <description url="http://Footeware.ca">
+      Footeware Image View
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      Footeware.ca
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      EPL-1.0
+   </license>
+
+   <requires>
+      <import plugin="javax.annotation"/>
+   </requires>
+
+   <plugin
+         id="ca.footeware.e4.imageview.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
