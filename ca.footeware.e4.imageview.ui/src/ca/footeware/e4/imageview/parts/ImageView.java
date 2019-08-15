@@ -40,7 +40,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 
-import ca.footeware.e4.imageview.Exceptions.ImageNotFoundException;
+import ca.footeware.e4.imageview.exceptions.ImageNotFoundException;
 import ca.footeware.e4.imageview.models.ImageViewDTO;
 
 /**

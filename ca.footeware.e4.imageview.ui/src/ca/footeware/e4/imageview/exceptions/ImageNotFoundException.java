@@ -1,4 +1,4 @@
-package ca.footeware.e4.imageview.Exceptions;
+package ca.footeware.e4.imageview.exceptions;
 
 /**
  * @author Footeware.ca

@@ -4,7 +4,7 @@ Bundle-Name: Image View
 Bundle-SymbolicName: ca.footeware.e4.imageview.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Footeware.ca
-Export-Package: ca.footeware.e4.imageview.Exceptions,
+Export-Package: ca.footeware.e4.imageview.exceptions,
  ca.footeware.e4.imageview.handlers,
  ca.footeware.e4.imageview.models,
  ca.footeware.e4.imageview.parts
