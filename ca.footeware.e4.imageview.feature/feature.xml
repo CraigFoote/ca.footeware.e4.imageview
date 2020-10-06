@@ -2,7 +2,7 @@
 <feature
       id="ca.footeware.e4.imageview.feature"
       label="Image View Feature"
-      version="1.0.0.qualifier"
+      version="1.1.0.qualifier"
       provider-name="Footeware.ca"
       os="linux,win32"
       ws="gtk,win32"
@@ -18,7 +18,7 @@
    </copyright>
 
    <license url="http://www.example.com/license">
-      EPL-1.0
+      EPL
    </license>
 
    <requires>

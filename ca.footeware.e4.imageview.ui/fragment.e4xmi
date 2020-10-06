@@ -3,7 +3,7 @@
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_I2-5ULhbEem3lIC4Ua1GZg" featurename="children" parentElementId="ca.footeware.e4.application.perspectivestack">
     <elements xsi:type="advanced:Perspective" xmi:id="_45lzELhbEem3lIC4Ua1GZg" elementId="ca.footeware.e4.imageview.perspective.imageview" label="Image View" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/camera.png" tooltip="Image View">
       <children xsi:type="basic:PartStack" xmi:id="_uBQ6cLhiEem3lIC4Ua1GZg" elementId="ca.footeware.e4.imageview.partstack.0">
-        <children xsi:type="basic:Part" xmi:id="_NGbDULhdEem3lIC4Ua1GZg" elementId="ca.footeware.e4.imageview.part.imageview" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.imageview.parts.ImageView" label="Image View" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/camera.png" tooltip="Image View" closeable="true">
+        <children xsi:type="basic:Part" xmi:id="_NGbDULhdEem3lIC4Ua1GZg" elementId="ca.footeware.e4.imageview.part.imageview" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.imageview.parts.ImageView" label="Image View" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/camera.png" tooltip="Image View">
           <toolbar xmi:id="_kzYA0LhdEem3lIC4Ua1GZg" elementId="ca.footeware.e4.imageview.toolbar.0">
             <children xsi:type="menu:DirectToolItem" xmi:id="_2K4gYLh3Eem3lIC4Ua1GZg" elementId="ca.footeware.e4.imageview.directtoolitem.browse" label="Browse" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/browse-folder-16.png" tooltip="Browse to a folder with images" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.imageview.handlers.BrowseHandler"/>
           </toolbar>
