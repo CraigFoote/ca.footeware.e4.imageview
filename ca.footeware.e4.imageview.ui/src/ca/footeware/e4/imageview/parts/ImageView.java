@@ -25,7 +25,6 @@ import org.eclipse.nebula.widgets.gallery.DefaultGalleryItemRenderer;
 import org.eclipse.nebula.widgets.gallery.Gallery;
 import org.eclipse.nebula.widgets.gallery.GalleryItem;
 import org.eclipse.nebula.widgets.gallery.NoGroupRenderer;
-import org.eclipse.nebula.widgets.opal.nebulaslider.NebulaSlider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTException;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -39,6 +38,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Slider;
 
 import ca.footeware.e4.imageview.exceptions.ImageNotFoundException;
 import ca.footeware.e4.imageview.models.ImageViewDTO;
@@ -102,17 +102,17 @@ public class ImageView {
 		GridData gridData = GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).create();
 		pathLabel.setLayoutData(gridData);
 
-		NebulaSlider slider = new NebulaSlider(parent, SWT.NONE);
+		Slider slider = new Slider(parent, SWT.NONE);
 		slider.setMinimum(16);
 		slider.setMaximum(10000);
-		slider.setValue(128);
+		slider.setValues(100, 100, 2000, 100, 10, 20);
 		gridData = GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).create();
 		slider.setLayoutData(gridData);
 
 		slider.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				SIZE = slider.getValue();
+				SIZE = slider.getSelection();
 				NoGroupRenderer groupRenderer = (NoGroupRenderer) gallery.getGroupRenderer();
 				groupRenderer.setItemSize(SIZE, SIZE);
 			}
