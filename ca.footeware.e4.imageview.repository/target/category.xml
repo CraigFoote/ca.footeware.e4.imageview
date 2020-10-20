@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/ca.footeware.e4.imageview.feature_0.0.0.jar" id="ca.footeware.e4.imageview.feature" version="0.0.0" os="linux,win32" ws="gtk,win32" nl="en" arch="x86_64">
+      <category name="ca.footeware.e4.imageview"/>
+   </feature>
+   <category-def name="ca.footeware.e4.imageview" label="Image View"/>
+</site>
