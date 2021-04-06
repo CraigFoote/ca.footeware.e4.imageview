@@ -1,24 +1,24 @@
-/**
- * 
- */
+
 package ca.footeware.e4.imageview.handlers;
 
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
-import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 
 /**
+ * Shows Image View perspective.
+ * 
  * @author Footeware.ca
  *
  */
-public class ShowViewHandler {
+public class ShowPerspectiveHandler {
 
 	/**
 	 * 
+	 * @param partService {@link EPartService}
 	 */
 	@Execute
 	public void execute(EPartService partService) {
-		partService.showPart("ca.footeware.e4.imageview.part.imageview", PartState.ACTIVATE);
+		partService.switchPerspective("ca.footeware.e4.imageview.perspective");
 	}
 
 }

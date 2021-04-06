@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <units size='4'>
-  <unit id='ca.footeware.e4.imageview.feature.feature.group' version='1.1.0.202010090132' singleton='false'>
-    <update id='ca.footeware.e4.imageview.feature.feature.group' range='[0.0.0,1.1.0.202010090132)' severity='0'/>
+  <unit id='ca.footeware.e4.imageview.feature.feature.group' version='1.2.0.202104062334' singleton='false'>
+    <update id='ca.footeware.e4.imageview.feature.feature.group' range='[0.0.0,1.2.0.202104062334)' severity='0'/>
     <properties size='8'>
       <property name='org.eclipse.equinox.p2.name' value='Image View Feature'/>
       <property name='org.eclipse.equinox.p2.description' value='Footeware Image View'/>
@@ -10,15 +10,14 @@
       <property name='org.eclipse.equinox.p2.type.group' value='true'/>
       <property name='maven-groupId' value='ca.footeware.e4.imageview'/>
       <property name='maven-artifactId' value='ca.footeware.e4.imageview.feature'/>
-      <property name='maven-version' value='1.1.0-SNAPSHOT'/>
+      <property name='maven-version' value='1.2.0-SNAPSHOT'/>
     </properties>
     <provides size='1'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.feature.feature.group' version='1.1.0.202010090132'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.feature.feature.group' version='1.2.0.202104062334'/>
     </provides>
-    <requires size='3'>
-      <required namespace='org.eclipse.equinox.p2.iu' name='javax.annotation' range='0.0.0'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.ui' range='[1.1.0.202010090132,1.1.0.202010090132]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.feature.feature.jar' range='[1.1.0.202010090132,1.1.0.202010090132]'>
+    <requires size='2'>
+      <required namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.ui' range='[1.2.0.202104062334,1.2.0.202104062334]'/>
+      <required namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.feature.feature.jar' range='[1.2.0.202104062334,1.2.0.202104062334]'>
         <filter>
           (org.eclipse.update.install.features=true)
         </filter>
@@ -37,7 +36,7 @@
       Footeware.ca
     </copyright>
   </unit>
-  <unit id='ca.footeware.e4.imageview.feature.feature.jar' version='1.1.0.202010090132'>
+  <unit id='ca.footeware.e4.imageview.feature.feature.jar' version='1.2.0.202104062334'>
     <properties size='7'>
       <property name='org.eclipse.equinox.p2.name' value='Image View Feature'/>
       <property name='org.eclipse.equinox.p2.description' value='Footeware Image View'/>
@@ -45,18 +44,18 @@
       <property name='org.eclipse.equinox.p2.provider' value='Footeware.ca'/>
       <property name='maven-groupId' value='ca.footeware.e4.imageview'/>
       <property name='maven-artifactId' value='ca.footeware.e4.imageview.feature'/>
-      <property name='maven-version' value='1.1.0-SNAPSHOT'/>
+      <property name='maven-version' value='1.2.0-SNAPSHOT'/>
     </properties>
     <provides size='3'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.feature.feature.jar' version='1.1.0.202010090132'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.feature.feature.jar' version='1.2.0.202104062334'/>
       <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='feature' version='1.0.0'/>
-      <provided namespace='org.eclipse.update.feature' name='ca.footeware.e4.imageview.feature' version='1.1.0.202010090132'/>
+      <provided namespace='org.eclipse.update.feature' name='ca.footeware.e4.imageview.feature' version='1.2.0.202104062334'/>
     </provides>
     <filter>
       (org.eclipse.update.install.features=true)
     </filter>
     <artifacts size='1'>
-      <artifact classifier='org.eclipse.update.feature' id='ca.footeware.e4.imageview.feature' version='1.1.0.202010090132'/>
+      <artifact classifier='org.eclipse.update.feature' id='ca.footeware.e4.imageview.feature' version='1.2.0.202104062334'/>
     </artifacts>
     <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
     <touchpointData size='1'>
@@ -75,8 +74,8 @@
       Footeware.ca
     </copyright>
   </unit>
-  <unit id='ca.footeware.e4.imageview.feature.source.feature.group' version='1.1.0.202010090132' singleton='false'>
-    <update id='ca.footeware.e4.imageview.feature.source.feature.group' range='[0.0.0,1.1.0.202010090132)' severity='0'/>
+  <unit id='ca.footeware.e4.imageview.feature.source.feature.group' version='1.2.0.202104062334' singleton='false'>
+    <update id='ca.footeware.e4.imageview.feature.source.feature.group' range='[0.0.0,1.2.0.202104062334)' severity='0'/>
     <properties size='9'>
       <property name='org.eclipse.equinox.p2.name' value='Image View Feature Developer Resources'/>
       <property name='org.eclipse.equinox.p2.description' value='Footeware Image View'/>
@@ -85,20 +84,20 @@
       <property name='org.eclipse.equinox.p2.type.group' value='true'/>
       <property name='maven-groupId' value='ca.footeware.e4.imageview'/>
       <property name='maven-artifactId' value='ca.footeware.e4.imageview.feature'/>
-      <property name='maven-version' value='1.1.0-SNAPSHOT'/>
+      <property name='maven-version' value='1.2.0-SNAPSHOT'/>
       <property name='maven-classifier' value='sources-feature'/>
     </properties>
     <provides size='1'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.feature.source.feature.group' version='1.1.0.202010090132'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.feature.source.feature.group' version='1.2.0.202104062334'/>
     </provides>
     <requires size='3'>
-      <required namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.feature.feature.group' range='[1.1.0.202010090132,1.1.0.202010090132]'>
+      <required namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.feature.feature.group' range='[1.2.0.202104062334,1.2.0.202104062334]'>
         <filter>
           (&amp;(osgi.arch=x86_64)(|(osgi.os=linux)(osgi.os=win32))(|(osgi.ws=gtk)(osgi.ws=win32)))
         </filter>
       </required>
-      <required namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.ui.source' range='[1.1.0.202010090132,1.1.0.202010090132]'/>
-      <required namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.feature.source.feature.jar' range='[1.1.0.202010090132,1.1.0.202010090132]'>
+      <required namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.ui.source' range='[1.2.0.202104062334,1.2.0.202104062334]'/>
+      <required namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.feature.source.feature.jar' range='[1.2.0.202104062334,1.2.0.202104062334]'>
         <filter>
           (org.eclipse.update.install.features=true)
         </filter>
@@ -114,7 +113,7 @@
       Footeware.ca
     </copyright>
   </unit>
-  <unit id='ca.footeware.e4.imageview.feature.source.feature.jar' version='1.1.0.202010090132'>
+  <unit id='ca.footeware.e4.imageview.feature.source.feature.jar' version='1.2.0.202104062334'>
     <properties size='8'>
       <property name='org.eclipse.equinox.p2.name' value='Image View Feature Developer Resources'/>
       <property name='org.eclipse.equinox.p2.description' value='Footeware Image View'/>
@@ -122,19 +121,19 @@
       <property name='org.eclipse.equinox.p2.provider' value='Footeware.ca'/>
       <property name='maven-groupId' value='ca.footeware.e4.imageview'/>
       <property name='maven-artifactId' value='ca.footeware.e4.imageview.feature'/>
-      <property name='maven-version' value='1.1.0-SNAPSHOT'/>
+      <property name='maven-version' value='1.2.0-SNAPSHOT'/>
       <property name='maven-classifier' value='sources-feature'/>
     </properties>
     <provides size='3'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.feature.source.feature.jar' version='1.1.0.202010090132'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='ca.footeware.e4.imageview.feature.source.feature.jar' version='1.2.0.202104062334'/>
       <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='feature' version='1.0.0'/>
-      <provided namespace='org.eclipse.update.feature' name='ca.footeware.e4.imageview.feature.source' version='1.1.0.202010090132'/>
+      <provided namespace='org.eclipse.update.feature' name='ca.footeware.e4.imageview.feature.source' version='1.2.0.202104062334'/>
     </provides>
     <filter>
       (org.eclipse.update.install.features=true)
     </filter>
     <artifacts size='1'>
-      <artifact classifier='org.eclipse.update.feature' id='ca.footeware.e4.imageview.feature.source' version='1.1.0.202010090132'/>
+      <artifact classifier='org.eclipse.update.feature' id='ca.footeware.e4.imageview.feature.source' version='1.2.0.202104062334'/>
     </artifacts>
     <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
     <touchpointData size='1'>
