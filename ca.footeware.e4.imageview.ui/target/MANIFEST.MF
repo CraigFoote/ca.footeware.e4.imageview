@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Image View
 Bundle-SymbolicName: ca.footeware.e4.imageview.ui;singleton:=true
-Bundle-Version: 1.2.0.202104062334
+Bundle-Version: 1.2.0.202104102324
 Bundle-Vendor: Footeware.ca
 Export-Package: ca.footeware.e4.imageview.exceptions,ca.footeware.e4.ima
  geview.handlers,ca.footeware.e4.imageview.models,ca.footeware.e4.imagev

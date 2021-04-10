@@ -4,13 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -35,9 +31,8 @@ import org.eclipse.swt.graphics.ImageLoader;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Slider;
 
 import ca.footeware.e4.imageview.exceptions.ImageNotFoundException;
@@ -49,10 +44,8 @@ import ca.footeware.e4.imageview.models.ImageViewDTO;
  */
 public class ImageView {
 
-	private Gallery gallery;
-	private List<Image> toBeDestroyed = new ArrayList<>();
-	private List<String> urls = new ArrayList<>();
-	private static int SIZE = 16;
+	private GalleryItem group;
+	private static int SIZE = 100;
 	private Label pathLabel;
 	@Inject
 	UISynchronize sync;
@@ -61,33 +54,32 @@ public class ImageView {
 	 * @param dto {@link List} of {@link String} The URLs to the image files.
 	 */
 	public void setInput(final ImageViewDTO dto) {
+		for (GalleryItem item : group.getItems()) {
+			item.getImage().dispose();
+			group.remove(item);
+		}
 		pathLabel.setText(dto.getFolderName());
-		this.urls.addAll(dto.getImageNames());
-		gallery.clearAll();
-		GalleryItem group = new GalleryItem(gallery, SWT.BORDER);
-		final Map<String, Image> imageMap = new HashMap<>();
+		List<String> imageNames = dto.getImageNames();
 
-		Job job = Job.create("Get images", (ICoreRunnable) monitor -> {
-			for (String imageName : dto.getImageNames()) {
-				if (!monitor.isCanceled()) {
-					try {
-						Image image = getImage(imageName);
-						imageMap.put(imageName, image);
-						toBeDestroyed.add(image);
-					} catch (ImageNotFoundException e1) {
-						// TODO report
-					}
-
+		Job job = Job.create("Update table", (ICoreRunnable) monitor -> {
+			monitor.beginTask("Fetch pictures", imageNames.size());
+			for (String imageName : imageNames) {
+				try {
+					Image image = getImage(imageName);
 					sync.asyncExec(() -> {
-						GalleryItem item = new GalleryItem(group, SWT.BORDER);
+						GalleryItem item = new GalleryItem(group, SWT.None);
+						item.setImage(image);
 						item.setText(imageName.substring(imageName.lastIndexOf('/') + 1));
-						item.setImage(imageMap.get(imageName));
-//						gallery.refresh(0);
 					});
+				} catch (ImageNotFoundException e) {
+					e.printStackTrace();
 				}
+				monitor.worked(1);
 			}
+			monitor.done();
 		});
-		job.setUser(false);
+		job.setUser(true);
+		job.setSystem(true);
 		job.schedule();
 	}
 
@@ -98,14 +90,14 @@ public class ImageView {
 	public void createPartControl(Composite parent) {
 		parent.setLayout(new GridLayout());
 
-		pathLabel = new Label(parent, SWT.BORDER);
+		pathLabel = new Label(parent, SWT.NONE);
 		GridData gridData = GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).create();
 		pathLabel.setLayoutData(gridData);
 
 		Slider slider = new Slider(parent, SWT.NONE);
-		slider.setMinimum(16);
-		slider.setMaximum(10000);
-		slider.setValues(100, 100, 2000, 100, 10, 20);
+		slider.setMinimum(100);
+		slider.setMaximum(1000);
+		slider.setValues(100, 100, 1000, 100, 100, 100);
 		gridData = GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).create();
 		slider.setLayoutData(gridData);
 
@@ -113,62 +105,25 @@ public class ImageView {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				SIZE = slider.getSelection();
-				NoGroupRenderer groupRenderer = (NoGroupRenderer) gallery.getGroupRenderer();
+				NoGroupRenderer groupRenderer = (NoGroupRenderer) group.getParent().getGroupRenderer();
 				groupRenderer.setItemSize(SIZE, SIZE);
 			}
 		});
 
-		gallery = new Gallery(parent, SWT.V_SCROLL | SWT.VIRTUAL | SWT.BORDER);
+		Gallery gallery = new Gallery(parent, SWT.V_SCROLL | SWT.VIRTUAL);
 		gridData = GridDataFactory.swtDefaults().grab(true, true).align(SWT.FILL, SWT.FILL).create();
 		gallery.setLayoutData(gridData);
-		gallery.setAntialias(SWT.ON);
-
+		gallery.setVirtualGroups(true);
+		group = new GalleryItem(gallery, SWT.NONE);
 		NoGroupRenderer gr = new NoGroupRenderer();
-		gr.setMinMargin(5);
-		gr.setItemSize(SIZE, SIZE);
+		gr.setMinMargin(2);
+		gr.setItemHeight(SIZE);
+		gr.setItemWidth(SIZE);
 		gr.setAutoMargin(true);
 		gallery.setGroupRenderer(gr);
-
 		DefaultGalleryItemRenderer ir = new DefaultGalleryItemRenderer();
-		ir.setShowLabels(true);
 		gallery.setItemRenderer(ir);
-
-		gallery.setVirtualGroups(true);
-		gallery.setItemCount(0);
-
-		gallery.setData(urls);
-
-		gallery.addListener(SWT.SetData, new Listener() {
-			@Override
-			public void handleEvent(Event event) {
-				System.err.println(event);
-				if (!urls.isEmpty()) {
-					GalleryItem item = (GalleryItem) event.item;
-					try {
-						displayItem(item);
-					} catch (ImageNotFoundException e) {
-						// TODO report
-					}
-				}
-			}
-		});
-	}
-
-	/**
-	 * @throws ImageNotFoundException
-	 * 
-	 */
-	protected void displayItem(GalleryItem item) throws ImageNotFoundException {
-		int index = 0;
-		if (item.getParent() != null) {
-			index = item.getParent().indexOf(item);
-		}
-		@SuppressWarnings("unchecked")
-		List<String> urlStrings = (List<String>) gallery.getData();
-		String urlString = urlStrings.get(index);
-		Image image = getImage(urlString);
-		item.setText(urlString);
-		item.setImage(image);
+		gallery.setItemCount(1);
 	}
 
 	private Image getImage(String urlString) throws ImageNotFoundException {
@@ -182,8 +137,7 @@ public class ImageView {
 		ImageData[] data = null;
 		try (InputStream is = url.openStream()) {
 			data = loader.load(is);
-			Image image = new Image(gallery.getDisplay(), data[0]);
-			toBeDestroyed.add(image);
+			Image image = new Image(Display.getDefault(), data[0]);
 			return image;
 		} catch (IOException | SWTException e) {
 			throw new ImageNotFoundException(e);
@@ -195,7 +149,9 @@ public class ImageView {
 	 */
 	@Focus
 	public void setFocus() {
-		gallery.setFocus();
+		if (group != null && group.getParent() != null && !group.getParent().isDisposed()) {
+			group.getParent().setFocus();
+		}
 	}
 
 	/**
@@ -223,16 +179,5 @@ public class ImageView {
 	@Inject
 	@Optional
 	public void setSelection(@Named(IServiceConstants.ACTIVE_SELECTION) Object[] selectedObjects) {
-	}
-
-	@PreDestroy
-	private void preDestroy() {
-		if (toBeDestroyed != null) {
-			for (Image image : toBeDestroyed) {
-				if (image != null) {
-					image.dispose();
-				}
-			}
-		}
 	}
 }
