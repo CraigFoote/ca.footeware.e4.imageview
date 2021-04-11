@@ -12,6 +12,7 @@ import org.eclipse.e4.ui.workbench.IWorkbench;
 import org.eclipse.swtbot.e4.finder.widgets.SWTBotView;
 import org.eclipse.swtbot.e4.finder.widgets.SWTWorkbenchBot;
 import org.eclipse.swtbot.swt.finder.junit5.SWTBotJunit5Extension;
+import org.eclipse.swtbot.swt.finder.waits.DefaultCondition;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -46,5 +47,26 @@ class ApplicationTest {
 		SWTBotView view = bot.partByTitle("Image View");
 		view.close();
 		assertFalse(bot.parts().contains(view));
+	}
+
+	@Test
+	void testOpenViewFromMenu() {
+		SWTBotView view = bot.partByTitle("Image View");
+		view.close();
+		assertFalse(bot.parts().contains(view));
+		bot.menu("Window").menu("Show View").menu("Image View").click();
+
+		bot.waitUntil(new DefaultCondition() {
+			@Override
+			public String getFailureMessage() {
+				return "Could not find Image View";
+			}
+
+			@Override
+			public boolean test() throws Exception {
+				SWTBotView view = ApplicationTest.bot.partByTitle("Image View");
+				return view != null && view.getPart().isVisible();
+			}
+		});
 	}
 }
