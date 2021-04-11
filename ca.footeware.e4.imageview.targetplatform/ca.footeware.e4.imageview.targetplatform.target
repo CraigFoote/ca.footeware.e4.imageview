@@ -16,7 +16,42 @@
         </location>
 	    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 		    <repository location="http://server:8080/p2/ca.footeware.e4.application.repository-1.4.0-SNAPSHOT/"/>
-		    <unit id="ca.footeware.e4.application.feature.feature.group" version="1.4.0.202104062312"/>
+		    <unit id="ca.footeware.e4.application.feature.feature.group" version="0.0.0"/>
+	    </location>
+	     <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+		    <repository location="http://download.eclipse.org/technology/swtbot/releases/latest/"/>
+		    <unit id="org.apache.log4j" version="0.0.0"/>
+		    <unit id="org.apache.log4j.source" version="0.0.0"/>
+		    <unit id="org.eclipse.swtbot.eclipse.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.swtbot.eclipse.source.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.swtbot.eclipse.test.junit.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.swtbot.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.swtbot.forms.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.swtbot.generator.feature.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.swtbot.generator.feature.source.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.swtbot.ide.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.swtbot.ide.source.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.swtbot.junit5.feature.group" version="0.0.0"/>
+		    <unit id="org.eclipse.swtbot.source.feature.group" version="0.0.0"/>
+		    <unit id="org.hamcrest.core" version="0.0.0"/>
+		    <unit id="org.hamcrest.core.source" version="0.0.0"/>
+		    <unit id="org.hamcrest.library" version="0.0.0"/>
+		    <unit id="org.hamcrest.library.source" version="0.0.0"/>
+	    </location>
+	    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+		    <repository location="http://server:8080/p2/orbit-buildrepo-R20210223232630/"/>
+		    <unit id="org.junit.jupiter.api" version="5.7.1.v20210222-1948"/>
+		    <unit id="org.junit.jupiter.engine" version="5.7.1.v20210222-1948"/>
+		    <unit id="org.junit.jupiter.migrationsupport" version="5.7.1.v20210222-1948"/>
+		    <unit id="org.junit.jupiter.params" version="5.7.1.v20210222-1948"/>
+		    <unit id="org.junit.platform.runner" version="1.7.1.v20210222-1948"/>
+		    <unit id="org.junit.vintage.engine" version="5.7.1.v20210222-1948"/>
+	    </location>
+	    <location includeSource="true" missingManifest="generate" type="Maven">
+		    <groupId>org.eclipse.jdt</groupId>
+		    <artifactId>org.eclipse.jdt.junit5.runtime</artifactId>
+		    <version>1.0.1100</version>
+		    <type>jar</type>
 	    </location>
     </locations>
     <environment>

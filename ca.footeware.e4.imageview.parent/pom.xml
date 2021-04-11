@@ -19,6 +19,7 @@
 		<module>../ca.footeware.e4.imageview.feature</module>
 		<module>../ca.footeware.e4.imageview.targetplatform</module>
 		<module>../ca.footeware.e4.imageview.repository</module>
+		<module>../ca.footeware.e4.imageview.ui.tests</module>
 	</modules>
 
 	<build>
