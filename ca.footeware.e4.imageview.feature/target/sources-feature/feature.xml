@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feature id="ca.footeware.e4.imageview.feature.source" version="1.2.0.202104102324" label="Image View Feature Developer Resources" provider-name="Footeware.ca">
+<feature id="ca.footeware.e4.imageview.feature.source" version="1.2.0.202104112016" label="Image View Feature Developer Resources" provider-name="Footeware.ca">
   <description url="http://Footeware.ca">
       Footeware Image View
    </description>
@@ -9,6 +9,6 @@
   <license url="http://www.example.com/license">
       EPL
    </license>
-  <includes id="ca.footeware.e4.imageview.feature" version="1.2.0.202104102324" os="linux,win32" ws="gtk,win32" arch="x86_64"/>
-  <plugin id="ca.footeware.e4.imageview.ui.source" version="1.2.0.202104102324" download-size="0" install-size="0" unpack="false"/>
+  <includes id="ca.footeware.e4.imageview.feature" version="1.2.0.202104112016" os="linux,win32" ws="gtk,win32" arch="x86_64"/>
+  <plugin id="ca.footeware.e4.imageview.ui.source" version="1.2.0.202104112016" download-size="0" install-size="0" unpack="false"/>
 </feature>
