@@ -3,11 +3,13 @@
  */
 package ca.footeware.imageview.ui.test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.eclipse.e4.core.contexts.EclipseContextFactory;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.ui.workbench.IWorkbench;
+import org.eclipse.swtbot.e4.finder.widgets.SWTBotView;
 import org.eclipse.swtbot.e4.finder.widgets.SWTWorkbenchBot;
 import org.eclipse.swtbot.swt.finder.junit5.SWTBotJunit5Extension;
 import org.junit.jupiter.api.BeforeAll;
@@ -35,7 +37,14 @@ class ApplicationTest {
 	}
 
 	@Test
-	public void testViewOpenByDefault() {
-		assertTrue(bot.partByTitle("Image View").getId().equals("ca.footeware.e4.imageview.part.imageview"));
+	void testViewOpenByDefault() {
+		assertTrue(bot.partByTitle("Image View").getPart().isVisible());
+	}
+
+	@Test
+	void testCloseView() {
+		SWTBotView view = bot.partByTitle("Image View");
+		view.close();
+		assertFalse(bot.parts().contains(view));
 	}
 }

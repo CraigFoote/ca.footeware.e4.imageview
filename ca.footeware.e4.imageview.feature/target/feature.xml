@@ -2,7 +2,7 @@
 <feature
       id="ca.footeware.e4.imageview.feature"
       label="Image View Feature"
-      version="1.2.0.202104112016"
+      version="1.2.0.202104112045"
       provider-name="Footeware.ca"
       os="linux,win32"
       ws="gtk,win32"
@@ -25,7 +25,7 @@
          id="ca.footeware.e4.imageview.ui"
          download-size="14"
          install-size="24"
-         version="1.2.0.202104112016"
+         version="1.2.0.202104112045"
          unpack="false"/>
 
 </feature>
