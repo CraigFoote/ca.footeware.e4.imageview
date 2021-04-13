@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='2'>
-  <artifact classifier='org.eclipse.update.feature' id='ca.footeware.e4.imageview.feature' version='1.2.0.202104112103'>
+  <artifact classifier='org.eclipse.update.feature' id='ca.footeware.e4.imageview.feature' version='1.2.0.202104130040'>
     <properties size='6'>
       <property name='artifact.size' value='733'/>
       <property name='download.size' value='733'/>
@@ -11,10 +11,10 @@
       <property name='download.contentType' value='application/zip'/>
     </properties>
   </artifact>
-  <artifact classifier='org.eclipse.update.feature' id='ca.footeware.e4.imageview.feature.source' version='1.2.0.202104112103'>
+  <artifact classifier='org.eclipse.update.feature' id='ca.footeware.e4.imageview.feature.source' version='1.2.0.202104130040'>
     <properties size='7'>
-      <property name='artifact.size' value='2220'/>
-      <property name='download.size' value='2220'/>
+      <property name='artifact.size' value='2218'/>
+      <property name='download.size' value='2218'/>
       <property name='maven-groupId' value='ca.footeware.e4.imageview'/>
       <property name='maven-artifactId' value='ca.footeware.e4.imageview.feature'/>
       <property name='maven-version' value='1.2.0-SNAPSHOT'/>

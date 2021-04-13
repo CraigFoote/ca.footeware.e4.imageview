@@ -4,7 +4,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>ca.footeware.imageview.ui.tests</artifactId>
+	<artifactId>ca.footeware.e4.imageview.ui.tests</artifactId>
 	<packaging>eclipse-test-plugin</packaging>
 
 	<parent>

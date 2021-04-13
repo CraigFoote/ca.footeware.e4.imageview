@@ -24,7 +24,7 @@ import ca.footeware.e4.imageview.parts.ImageView;
  */
 public class BrowseHandler {
 
-	private List<String> extensions = Arrays.asList(new String[] { "jpg", "JPG", "jpeg", "JPEG" });
+	private List<String> extensions = Arrays.asList(new String[] { "jpg", "JPG", "jpeg", "JPEG", "png", "PNG" });
 
 	@Inject
 	EPartService partService;

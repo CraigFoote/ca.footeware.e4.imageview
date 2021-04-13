@@ -60,6 +60,7 @@ public class ImageView {
 		}
 		pathLabel.setText(dto.getFolderName());
 		List<String> imageNames = dto.getImageNames();
+		System.err.println(imageNames);
 
 		Job job = Job.create("Update table", (ICoreRunnable) monitor -> {
 			monitor.beginTask("Fetch pictures", imageNames.size());
