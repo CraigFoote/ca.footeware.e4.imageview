@@ -28,8 +28,6 @@ import org.eclipse.swtbot.swt.finder.keyboard.Keystrokes;
 import org.eclipse.swtbot.swt.finder.results.Result;
 import org.eclipse.swtbot.swt.finder.utils.SWTBotPreferences;
 import org.eclipse.swtbot.swt.finder.waits.DefaultCondition;
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -39,6 +37,7 @@ import org.osgi.framework.FrameworkUtil;
 
 import ca.footeware.e4.imageview.models.ImageViewDTO;
 import ca.footeware.e4.imageview.parts.ImageView;
+import ca.footeware.imageview.ui.test.matchers.GalleryMatcher;
 
 /**
  * @author <a href="http://Footeware.ca">Footeware.ca</a>
@@ -119,9 +118,72 @@ class ImageViewTests {
 
 	@Test
 	void testSetInput() {
+		String folderName = setInput();
+		bot.waitUntil(new DefaultCondition() {
+			@Override
+			public String getFailureMessage() {
+				return "Could not find Image View label";
+			}
+
+			@Override
+			public boolean test() throws Exception {
+				return ImageViewTests.bot.partByTitle("Image View").bot().label().getText().equals(folderName);
+			}
+		});
+
+		SWTBot viewBot = ImageViewTests.bot.partByTitle("Image View").bot();
+		viewBot.canvas().click(10, 10);
+		Gallery gallery = viewBot.widget(new GalleryMatcher());
+
+		int numItems = UIThreadRunnable.syncExec((Result<Integer>) () -> {
+			GalleryItem[] children = gallery.getItems();
+			return children[0].getItemCount();
+		});
+		assertTrue(numItems == 2);
+	}
+
+	@Test
+	void testSlider() {
+		SWTBot viewBot = ImageViewTests.bot.partByTitle("Image View").bot();
+		final int size = viewBot.scale().getValue();
+
+		setInput();
+
+		final Gallery gallery = viewBot.widget(new GalleryMatcher());
+
+		bot.waitUntil(new DefaultCondition() {
+			@Override
+			public boolean test() throws Exception {
+				return UIThreadRunnable.syncExec(
+						(Result<Boolean>) () -> gallery.getItems()[0].getItems()[0].getBounds().width == size);
+			}
+
+			@Override
+			public String getFailureMessage() {
+				return "Image incorrect width.";
+			}
+		});
+
+		final int newSize = size + 100;
+		viewBot.scale().setValue(newSize);
+
+		bot.waitUntil(new DefaultCondition() {
+			@Override
+			public boolean test() throws Exception {
+				return UIThreadRunnable.syncExec(
+						(Result<Boolean>) () -> gallery.getItems()[0].getItems()[0].getBounds().width == newSize);
+			}
+
+			@Override
+			public String getFailureMessage() {
+				return "Image incorrect width.";
+			}
+		});
+	}
+
+	private String setInput() {
 		MPart mpart = bot.partByTitle("Image View").getPart();
 		ImageView view = (ImageView) mpart.getObject();
-
 		String root = System.getProperty("user.dir");
 		Path filePath = Paths.get(root, "..", "ca.footeware.e4.imageview.ui", "icons");
 		File folder = filePath.toFile();
@@ -133,48 +195,7 @@ class ImageViewTests {
 		ImageViewDTO dto = new ImageViewDTO();
 		dto.setPath(filePath.toString());
 		dto.setImages(fileNames);
-		Display.getDefault().asyncExec(new Runnable() {
-			@Override
-			public void run() {
-				view.setInput(dto);
-			}
-		});
-
-		bot.waitUntil(new DefaultCondition() {
-			@Override
-			public String getFailureMessage() {
-				return "Could not find Image View label";
-			}
-
-			@Override
-			public boolean test() throws Exception {
-				return ImageViewTests.bot.partByTitle("Image View").bot().label().getText().equals(dto.getFolderName());
-			}
-		});
-
-		SWTBot viewBot = ImageViewTests.bot.partByTitle("Image View").bot();
-		viewBot.canvas().click(10, 10);
-		Gallery gallery = viewBot.widget(new GalleryMatcher());
-
-		int numItems = UIThreadRunnable.syncExec(new Result<Integer>() {
-			@Override
-			public Integer run() {
-				GalleryItem[] children = gallery.getItems();
-				return children[0].getItemCount();
-			}
-		});
-		assertTrue(numItems == 2);
-	}
-
-	class GalleryMatcher extends BaseMatcher<Gallery> {
-		@Override
-		public boolean matches(Object item) {
-			return item instanceof Gallery;
-		}
-
-		@Override
-		public void describeTo(Description description) {
-			description.appendText("An image gallery.");
-		}
+		Display.getDefault().syncExec(() -> view.setInput(dto));
+		return dto.getFolderName();
 	}
 }

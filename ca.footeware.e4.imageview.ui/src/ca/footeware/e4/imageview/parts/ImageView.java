@@ -33,7 +33,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Slider;
+import org.eclipse.swt.widgets.Scale;
 
 import ca.footeware.e4.imageview.exceptions.ImageNotFoundException;
 import ca.footeware.e4.imageview.models.ImageViewDTO;
@@ -60,7 +60,6 @@ public class ImageView {
 		}
 		pathLabel.setText(dto.getFolderName());
 		List<String> imageNames = dto.getImageNames();
-		System.err.println(imageNames);
 
 		Job job = Job.create("Update table", (ICoreRunnable) monitor -> {
 			monitor.beginTask("Fetch pictures", imageNames.size());
@@ -71,6 +70,7 @@ public class ImageView {
 						GalleryItem item = new GalleryItem(group, SWT.None);
 						item.setImage(image);
 						item.setText(imageName.substring(imageName.lastIndexOf('/') + 1));
+						group.getParent().redraw();
 					});
 				} catch (ImageNotFoundException e) {
 					e.printStackTrace();
@@ -95,10 +95,12 @@ public class ImageView {
 		GridData gridData = GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).create();
 		pathLabel.setLayoutData(gridData);
 
-		Slider slider = new Slider(parent, SWT.NONE);
+		Scale slider = new Scale(parent, SWT.NONE);
 		slider.setMinimum(100);
-		slider.setMaximum(1000);
-		slider.setValues(100, 100, 1000, 100, 100, 100);
+		slider.setMaximum(500);
+		slider.setSelection(100);
+		slider.setIncrement(100);
+		slider.setPageIncrement(100);
 		gridData = GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).create();
 		slider.setLayoutData(gridData);
 
