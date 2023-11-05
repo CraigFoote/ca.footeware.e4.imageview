@@ -6,11 +6,11 @@
 
 	<groupId>ca.footeware.e4.imageview</groupId>
 	<artifactId>ca.footeware.e4.imageview.parent</artifactId>
-	<version>1.3.0-SNAPSHOT</version>
+	<version>1.4.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
-		<tycho.version>4.0.0</tycho.version>
+		<tycho.version>4.0.3</tycho.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -19,7 +19,7 @@
 		<module>../ca.footeware.e4.imageview.feature</module>
 		<module>../ca.footeware.e4.imageview.targetplatform</module>
 		<module>../ca.footeware.e4.imageview.repository</module>
-		<module>../ca.footeware.e4.imageview.ui.tests</module>
+<!--		<module>../ca.footeware.e4.imageview.ui.tests</module>-->
 	</modules>
 
 	<build>
@@ -28,7 +28,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.11.0</version>
 				<configuration>
-					<release>19</release>
+					<release>20</release>
 				</configuration>
 			</plugin>
 

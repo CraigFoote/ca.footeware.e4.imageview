@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -133,7 +134,7 @@ public class ImageView {
 		ImageLoader loader = new ImageLoader();
 		URL url = null;
 		try {
-			url = new URL(urlString);
+			url = Paths.get(urlString).toUri().toURL();
 		} catch (MalformedURLException e) {
 			throw new ImageNotFoundException(e);
 		}

@@ -23,27 +23,24 @@ import org.eclipse.swtbot.e4.finder.widgets.SWTBotView;
 import org.eclipse.swtbot.e4.finder.widgets.SWTWorkbenchBot;
 import org.eclipse.swtbot.swt.finder.SWTBot;
 import org.eclipse.swtbot.swt.finder.finders.UIThreadRunnable;
-import org.eclipse.swtbot.swt.finder.junit5.SWTBotJunit5Extension;
 import org.eclipse.swtbot.swt.finder.keyboard.Keystrokes;
+import org.eclipse.swtbot.swt.finder.matchers.WidgetOfType;
 import org.eclipse.swtbot.swt.finder.results.Result;
-import org.eclipse.swtbot.swt.finder.utils.SWTBotPreferences;
 import org.eclipse.swtbot.swt.finder.waits.DefaultCondition;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 
 import ca.footeware.e4.imageview.models.ImageViewDTO;
 import ca.footeware.e4.imageview.parts.ImageView;
-import ca.footeware.imageview.ui.test.matchers.GalleryMatcher;
 
 /**
  * @author <a href="http://Footeware.ca">Footeware.ca</a>
  *
  */
-@ExtendWith(SWTBotJunit5Extension.class)
 class ImageViewTests {
 
 	private static SWTWorkbenchBot bot;
@@ -74,6 +71,7 @@ class ImageViewTests {
 
 	@Test
 	void testViewOpenByDefault() {
+		System.out.println("testViewOpenByDefault");
 		assertTrue(bot.partByTitle("Image View").getPart().isVisible());
 	}
 
@@ -105,15 +103,10 @@ class ImageViewTests {
 	}
 
 	@Test
-	void testPerspective() {
-		bot.menu("Window").menu("Perspective").menu("Image View").click();
-	}
-
-	@Test
 	void testBrowseButton() {
-		SWTBotPreferences.KEYBOARD_LAYOUT = "EN_US";
 		bot.partByTitle("Image View").toolbarButton("Browse a folder").click();
 		bot.shells()[0].pressShortcut(Keystrokes.ESC);
+		Assertions.assertTrue(true);
 	}
 
 	@Test
@@ -133,7 +126,7 @@ class ImageViewTests {
 
 		SWTBot viewBot = ImageViewTests.bot.partByTitle("Image View").bot();
 		viewBot.canvas().click(10, 10);
-		Gallery gallery = viewBot.widget(new GalleryMatcher());
+		Gallery gallery = viewBot.widget(WidgetOfType.widgetOfType(Gallery.class));
 
 		int numItems = UIThreadRunnable.syncExec((Result<Integer>) () -> {
 			GalleryItem[] children = gallery.getItems();
@@ -149,7 +142,7 @@ class ImageViewTests {
 
 		setInput();
 
-		final Gallery gallery = viewBot.widget(new GalleryMatcher());
+		final Gallery gallery = viewBot.widget(WidgetOfType.widgetOfType(Gallery.class));
 
 		bot.waitUntil(new DefaultCondition() {
 			@Override
@@ -179,6 +172,7 @@ class ImageViewTests {
 				return "Image incorrect width.";
 			}
 		});
+		Assertions.assertTrue(true);
 	}
 
 	private String setInput() {

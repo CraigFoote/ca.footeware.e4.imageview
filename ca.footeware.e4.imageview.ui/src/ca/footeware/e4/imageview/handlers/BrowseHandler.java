@@ -3,9 +3,7 @@ package ca.footeware.e4.imageview.handlers;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import javax.inject.Inject;
 
@@ -24,7 +22,7 @@ import ca.footeware.e4.imageview.parts.ImageView;
  */
 public class BrowseHandler {
 
-	private List<String> extensions = Arrays.asList(new String[] { "jpg", "JPG", "jpeg", "JPEG", "png", "PNG" });
+	private List<String> extensions = List.of("jpg", "JPG", "jpeg", "JPEG", "png", "PNG");
 
 	@Inject
 	EPartService partService;
@@ -37,28 +35,30 @@ public class BrowseHandler {
 		DirectoryDialog dialog = new DirectoryDialog(Display.getDefault().getActiveShell());
 		String result = dialog.open();
 		if (result != null) {
-			
+
 			ImageViewDTO dto = new ImageViewDTO();
 			dto.setPath(result);
-			
+
 			File folder = new File(result);
 			if (folder.exists() && folder.canRead() && folder.isDirectory()) {
 				File[] files = folder.listFiles();
 				List<String> imagePaths = new ArrayList<>();
 				for (File file : files) {
 					if (file.exists() && file.canRead() && file.isFile()) {
-						Optional<String> extension = Optional.ofNullable(file.getName()).filter(f -> f.contains("."))
-								.map(f -> f.substring(file.getName().lastIndexOf(".") + 1));
-						if (extensions.contains(extension.get())) {
-							imagePaths.add("file://"+file.getAbsolutePath());
+						String name = file.getName();
+						if (name.contains(".")) {
+							String extension = name.substring(name.lastIndexOf(".") + 1);
+							if (extensions.contains(extension)) {
+								imagePaths.add("file://" + file.getAbsolutePath());
+							}
 						}
 					}
 				}
 				dto.setImages(imagePaths);
 				MPart activeMPart = partService.getActivePart();
 				Object part = activeMPart.getObject();
-				if (part instanceof ImageView) {
-					((ImageView) part).setInput(dto);
+				if (part instanceof ImageView view) {
+					view.setInput(dto);
 				}
 			}
 		}

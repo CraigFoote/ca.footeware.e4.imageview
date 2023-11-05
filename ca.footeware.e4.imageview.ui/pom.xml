@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>ca.footeware.e4.imageview</groupId>
 		<artifactId>ca.footeware.e4.imageview.parent</artifactId>
-		<version>1.3.0-SNAPSHOT</version>
+		<version>1.4.0-SNAPSHOT</version>
 		<relativePath>../ca.footeware.e4.imageview.parent</relativePath>
 	</parent>
 </project>
