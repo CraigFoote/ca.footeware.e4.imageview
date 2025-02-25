@@ -1,10 +1,10 @@
 package ca.footeware.e4.imageview.parts;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.file.Paths;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -23,13 +23,11 @@ import org.eclipse.nebula.widgets.gallery.Gallery;
 import org.eclipse.nebula.widgets.gallery.GalleryItem;
 import org.eclipse.nebula.widgets.gallery.NoGroupRenderer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.SWTException;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.ImageLoader;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -40,19 +38,20 @@ import ca.footeware.e4.imageview.exceptions.ImageNotFoundException;
 import ca.footeware.e4.imageview.models.ImageViewDTO;
 
 /**
- * @author Footeware.ca
- *
+ * @author Footeware.ca *
  */
 public class ImageView {
 
 	private GalleryItem group;
-	private static int SIZE = 100;
+	private int size = 100;
 	private Label pathLabel;
+	private String scheme = "file:" + File.separator + File.separator;
+	private ImageLoader loader = new ImageLoader();
 	@Inject
 	UISynchronize sync;
 
 	/**
-	 * @param dto {@link List} of {@link String} The URLs to the image files.
+	 * @param dto {@link ImageView} of {@link String} The URLs to the image files.
 	 */
 	public void setInput(final ImageViewDTO dto) {
 		for (GalleryItem item : group.getItems()) {
@@ -62,7 +61,7 @@ public class ImageView {
 		pathLabel.setText(dto.getFolderName());
 		List<String> imageNames = dto.getImageNames();
 
-		Job job = Job.create("Update table", (ICoreRunnable) monitor -> {
+		Job job = Job.create("Set input", (ICoreRunnable) monitor -> {
 			monitor.beginTask("Fetch pictures", imageNames.size());
 			for (String imageName : imageNames) {
 				try {
@@ -81,7 +80,7 @@ public class ImageView {
 			monitor.done();
 		});
 		job.setUser(true);
-		job.setSystem(true);
+		job.setSystem(false);
 		job.schedule();
 	}
 
@@ -93,57 +92,48 @@ public class ImageView {
 		parent.setLayout(new GridLayout());
 
 		pathLabel = new Label(parent, SWT.NONE);
-		GridData gridData = GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).create();
-		pathLabel.setLayoutData(gridData);
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).applyTo(pathLabel);
 
-		Scale slider = new Scale(parent, SWT.NONE);
-		slider.setMinimum(100);
-		slider.setMaximum(500);
-		slider.setSelection(100);
-		slider.setIncrement(100);
-		slider.setPageIncrement(100);
-		gridData = GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).create();
-		slider.setLayoutData(gridData);
+		final Scale slider = new Scale(parent, SWT.NONE);
+		slider.setMinimum(1);
+		slider.setMaximum(5);
+		slider.setSelection(1);
+		slider.setIncrement(1);
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).applyTo(slider);
 
 		slider.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				SIZE = slider.getSelection();
-				NoGroupRenderer groupRenderer = (NoGroupRenderer) group.getParent().getGroupRenderer();
-				groupRenderer.setItemSize(SIZE, SIZE);
+				size = slider.getSelection() * 100;
+				((NoGroupRenderer) group.getParent().getGroupRenderer()).setItemSize(size, size);
 			}
 		});
 
 		Gallery gallery = new Gallery(parent, SWT.V_SCROLL | SWT.VIRTUAL);
-		gridData = GridDataFactory.swtDefaults().grab(true, true).align(SWT.FILL, SWT.FILL).create();
-		gallery.setLayoutData(gridData);
+		GridDataFactory.swtDefaults().grab(true, true).align(SWT.FILL, SWT.FILL).applyTo(gallery);
 		gallery.setVirtualGroups(true);
 		group = new GalleryItem(gallery, SWT.NONE);
 		NoGroupRenderer gr = new NoGroupRenderer();
-		gr.setMinMargin(2);
-		gr.setItemHeight(SIZE);
-		gr.setItemWidth(SIZE);
+		gr.setItemSize(size, size);
 		gr.setAutoMargin(true);
 		gallery.setGroupRenderer(gr);
 		DefaultGalleryItemRenderer ir = new DefaultGalleryItemRenderer();
 		gallery.setItemRenderer(ir);
 		gallery.setItemCount(1);
+		gallery.setLowQualityOnUserAction(true);
 	}
 
 	private Image getImage(String urlString) throws ImageNotFoundException {
-		ImageLoader loader = new ImageLoader();
-		URL url = null;
-		try {
-			url = Paths.get(urlString).toUri().toURL();
-		} catch (MalformedURLException e) {
-			throw new ImageNotFoundException(e);
-		}
-		ImageData[] data = null;
-		try (InputStream is = url.openStream()) {
-			data = loader.load(is);
+		String replaced = urlString.replace(" ", "%20");
+
+		try (InputStream is = new URI(scheme + replaced).toURL().openStream()) {
+			ImageData[] data = loader.load(is);
+			if (data.length == 0) {
+				throw new ImageNotFoundException("No image data found for " + urlString);
+			}
 			Image image = new Image(Display.getDefault(), data[0]);
 			return image;
-		} catch (IOException | SWTException e) {
+		} catch (IOException | URISyntaxException e) {
 			throw new ImageNotFoundException(e);
 		}
 	}

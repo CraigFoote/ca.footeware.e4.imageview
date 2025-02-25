@@ -2,12 +2,12 @@
 <fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:basic_1="http://www.eclipse.org/ui/2010/UIModel/application/descriptor/basic" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_BxaXACerEeWxCPrV0pAZQQ">
   <imports xsi:type="menu:Menu" xmi:id="_u3wHAHsoEe6KBYnqmiWilw" elementId="ca.footeware.e4.application.ui.menu.showview"/>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_I2-5ULhbEem3lIC4Ua1GZg" featurename="children" parentElementId="ca.footeware.e4.application.perspectivestack" positionInList="">
-    <elements xsi:type="advanced:Perspective" xmi:id="_biaPUJcvEeuyfL8HP4v8kg" elementId="ca.footeware.e4.imageview.perspective" label="Image View" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/camera.png">
+    <elements xsi:type="advanced:Perspective" xmi:id="_biaPUJcvEeuyfL8HP4v8kg" elementId="ca.footeware.e4.imageview.perspective" label="Image View" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/photo.png">
       <children xsi:type="basic:PartSashContainer" xmi:id="_2LC60JcvEeuyfL8HP4v8kg" elementId="ca.footeware.e4.imageview.ui.partsashcontainer.0" selectedElement="_44fYgJcvEeuyfL8HP4v8kg">
         <children xsi:type="basic:PartStack" xmi:id="_44fYgJcvEeuyfL8HP4v8kg" elementId="ca.footeware.e4.imageview.ui.partstack.0">
-          <children xsi:type="basic:Part" xmi:id="_50aOMJcvEeuyfL8HP4v8kg" elementId="ca.footeware.e4.imageview.part.imageview" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.imageview.parts.ImageView" label="Image View" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/camera.png" closeable="true">
+          <children xsi:type="basic:Part" xmi:id="_50aOMJcvEeuyfL8HP4v8kg" elementId="ca.footeware.e4.imageview.part.imageview" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.imageview.parts.ImageView" label="Image View" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/photo.png" closeable="true">
             <toolbar xmi:id="_8oHr8JcvEeuyfL8HP4v8kg" elementId="ca.footeware.e4.imageview.ui.toolbar.0">
-              <children xsi:type="menu:DirectToolItem" xmi:id="_lx33gJcwEeuyfL8HP4v8kg" elementId="ca.footeware.e4.imageview.ui.directtoolitem.browse" label="Browse" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/browse-folder-16.png" tooltip="Browse a folder" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.imageview.handlers.BrowseHandler"/>
+              <children xsi:type="menu:DirectToolItem" xmi:id="_lx33gJcwEeuyfL8HP4v8kg" elementId="ca.footeware.e4.imageview.ui.directtoolitem.browse" label="Browse" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/photo.png" tooltip="Browse a folder" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.imageview.handlers.BrowseHandler"/>
             </toolbar>
           </children>
         </children>
@@ -15,16 +15,16 @@
     </elements>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_RfzXALhgEem3lIC4Ua1GZg" featurename="children" parentElementId="ca.footeware.e4.application.ui.menu.showview">
-    <elements xsi:type="menu:DirectMenuItem" xmi:id="_uH4yIJcuEeuyfL8HP4v8kg" elementId="ca.footeware.e4.imageview.menu.showview" label="Image View" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/camera.png" tooltip="Open Image View" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.imageview.handlers.ShowViewHandler"/>
+    <elements xsi:type="menu:DirectMenuItem" xmi:id="_uH4yIJcuEeuyfL8HP4v8kg" elementId="ca.footeware.e4.imageview.menu.showview" label="Image View" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/photo.png" tooltip="Open Image View" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.imageview.handlers.ShowViewHandler"/>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_hD-CgHsyEe6keZwAG8dpbA" featurename="descriptors" parentElementId="ca.footeware.e4.application">
-    <elements xsi:type="basic_1:PartDescriptor" xmi:id="_nK8n0HsyEe6keZwAG8dpbA" elementId="ca.footeware.e4.imageview.ui.partdescriptor.imageview" label="Image View" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/camera.png" tooltip="" allowMultiple="true" closeable="true" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.imageview.parts.ImageView">
+    <elements xsi:type="basic_1:PartDescriptor" xmi:id="_nK8n0HsyEe6keZwAG8dpbA" elementId="ca.footeware.e4.imageview.ui.partdescriptor.imageview" label="Image View" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/photo.png" tooltip="" allowMultiple="true" closeable="true" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.imageview.parts.ImageView">
       <menus xmi:id="_dePcgHszEe6keZwAG8dpbA" elementId="ca.footeware.e4.imageview.ui.menu.1">
         <tags>ViewMenu</tags>
         <children xsi:type="menu:DirectMenuItem" xmi:id="_fkewQHszEe6keZwAG8dpbA" elementId="ca.footeware.e4.imageview.ui.directmenuitem.test" label="Test" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.textify.ui.handlers.TestHandler"/>
       </menus>
       <toolbar xmi:id="_0NBXAHsyEe6keZwAG8dpbA" elementId="ca.footeware.e4.imageview.ui.toolbar.2">
-        <children xsi:type="menu:DirectToolItem" xmi:id="_OSKT4HszEe6keZwAG8dpbA" elementId="ca.footeware.e4.imageview.ui.directtoolitem.browse" label="Browse" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/camera.png" tooltip="Select a folder and display its images" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.imageview.handlers.BrowseHandler"/>
+        <children xsi:type="menu:DirectToolItem" xmi:id="_OSKT4HszEe6keZwAG8dpbA" elementId="ca.footeware.e4.imageview.ui.directtoolitem.browse" label="Browse" iconURI="platform:/plugin/ca.footeware.e4.imageview.ui/icons/photo.png" tooltip="Select a folder and display its images" contributionURI="bundleclass://ca.footeware.e4.imageview.ui/ca.footeware.e4.imageview.handlers.BrowseHandler"/>
       </toolbar>
     </elements>
   </fragments>

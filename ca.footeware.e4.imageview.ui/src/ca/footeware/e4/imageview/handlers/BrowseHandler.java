@@ -17,18 +17,18 @@ import ca.footeware.e4.imageview.models.ImageViewDTO;
 import ca.footeware.e4.imageview.parts.ImageView;
 
 /**
+ * Opens a directory dialog to select a folder containing images.
+ * 
  * @author Footeware.ca
- *
  */
 public class BrowseHandler {
 
-	private List<String> extensions = List.of("jpg", "JPG", "jpeg", "JPEG", "png", "PNG");
-
+	private List<String> extensions = List.of("jpg", "jpeg", "png", "bmp", "gif");
 	@Inject
-	EPartService partService;
+	private EPartService partService;
 
 	/**
-	 * 
+	 * Opens a directory dialog to select a folder containing images.
 	 */
 	@Execute
 	public void execute() {
@@ -47,9 +47,9 @@ public class BrowseHandler {
 					if (file.exists() && file.canRead() && file.isFile()) {
 						String name = file.getName();
 						if (name.contains(".")) {
-							String extension = name.substring(name.lastIndexOf(".") + 1);
+							String extension = name.substring(name.lastIndexOf(".") + 1).toLowerCase();
 							if (extensions.contains(extension)) {
-								imagePaths.add("file://" + file.getAbsolutePath());
+								imagePaths.add(file.getAbsolutePath());
 							}
 						}
 					}

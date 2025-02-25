@@ -7,7 +7,6 @@ import java.util.List;
 
 /**
  * @author Footeware.ca
- *
  */
 public class ImageViewDTO {
 	private String path;
